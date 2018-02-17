@@ -15,7 +15,9 @@ export default class Timer extends React.Component {
     }
   }
 
-  componentWillUnmount() {}
+  componentWillUnmount() {
+    clearInterval(this.updateTimers);
+  }
 
   render() {
     const { timer } = this.props;
@@ -30,14 +32,20 @@ export default class Timer extends React.Component {
     const minutes = Math.floor((elapsed / 1000 / 60) % 60);
     const hours = Math.floor((elapsed / (1000 * 60 * 60)) % 24);
 
-    console.log(hours);
+    const styles = {
+      marginTop: "20px"
+    };
 
     return (
-      <div className="timer">
-        <div>{timer.title}</div>
-        <div>
-          {hours}:{minutes}:{seconds}
+      <div style={styles}>
+        <hr />
+        <div className="timer">
+          <div>{timer.title}</div>
+          <div>
+            {hours}:{minutes}:{seconds}
+          </div>
         </div>
+        <hr />
       </div>
     );
   }
