@@ -9,6 +9,8 @@ const styles = {
 
 const App = () => (
   <div style={styles}>
+    <h1>This is simple react app</h1>
+    <h2>Tracking times</h2>
     <TimersDashboard />
   </div>
 );
