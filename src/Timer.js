@@ -1,4 +1,5 @@
 import React from "react";
+import Utils from "./helpers";
 
 export default class Timer extends React.Component {
   constructor(props) {
@@ -28,24 +29,19 @@ export default class Timer extends React.Component {
       elapsed += Date.now() - timer.runningSince;
     }
 
-    const seconds = Math.floor((elapsed / 1000) % 60);
-    const minutes = Math.floor((elapsed / 1000 / 60) % 60);
-    const hours = Math.floor((elapsed / (1000 * 60 * 60)) % 24);
+    const timerValueString = Utils.milisecondsToHumanString(elapsed);
 
     const styles = {
-      marginTop: "20px"
+      marginTop: "20px",
+      borderBottom: "2px solid gray",
+      padding: "5px"
     };
 
     return (
       <div style={styles}>
-        <hr />
         <div className="timer">
-          <div>{timer.title}</div>
-          <div>
-            {hours}:{minutes}:{seconds}
-          </div>
+          <h3>{timerValueString}</h3>
         </div>
-        <hr />
       </div>
     );
   }
