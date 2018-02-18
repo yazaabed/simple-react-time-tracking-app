@@ -1,15 +1,8 @@
 import React from "react";
 import Utils from "./helpers";
+import PropTypes from "prop-types";
 
 export default class Timer extends React.Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      time: {}
-    };
-  }
-
   componentWillMount() {
     if (this.props.timer.runningSince) {
       this.updateTimers = setInterval(() => this.forceUpdate(), 50);
@@ -46,3 +39,7 @@ export default class Timer extends React.Component {
     );
   }
 }
+
+Timer.propTypes = {
+  timer: PropTypes.object
+};

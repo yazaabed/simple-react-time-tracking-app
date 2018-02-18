@@ -14,8 +14,7 @@ class TimerDashboard extends Component {
           elapsed: 1273998
         },
         {
-          elapsed: 11750,
-          runningSince: 1518887025980
+          elapsed: 11750
         }
       ]
     };
