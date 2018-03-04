@@ -1,7 +1,8 @@
 {
-  "name": "new",
+  "name": "react-simple-timer",
   "version": "1.0.0",
-  "description": "",
+  "description":
+    "Try to learn react from implement the timers and show them on the view",
   "keywords": [],
   "homepage": "https://codesandbox.io/s/new",
   "main": "src/index.js",

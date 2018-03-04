@@ -10,8 +10,20 @@ export default class Timer extends React.Component {
   }
 
   componentWillUnmount() {
-    clearInterval(this.updateTimers);
+    if (this.updateTimers) {
+      clearInterval(this.updateTimers);
+    }
   }
+
+  handleAttachTimerInterval = () => {
+    if (!this.updateTimers) {
+      if (this.props.timer.runningSince) {
+        this.updateTimers = setInterval(() => this.forceUpdate(), 50);
+      }
+    } else if (!this.props.timer.runningSince) {
+      clearInterval(this.updateTimers);
+    }
+  };
 
   render() {
     const { timer } = this.props;
@@ -20,6 +32,7 @@ export default class Timer extends React.Component {
 
     if (timer.runningSince) {
       elapsed += Date.now() - timer.runningSince;
+      this.handleAttachTimerInterval();
     }
 
     const timerValueString = Utils.milisecondsToHumanString(elapsed);
@@ -34,6 +47,15 @@ export default class Timer extends React.Component {
       <div style={styles}>
         <div className="timer">
           <h3>{timerValueString}</h3>
+          {timer.runningSince ? (
+            <button onClick={this.props.onTimerStopActionClicked(timer)}>
+              Stop
+            </button>
+          ) : (
+            <button onClick={this.props.onTimerStartActionClicked(timer)}>
+              Start
+            </button>
+          )}
         </div>
       </div>
     );
@@ -41,5 +63,7 @@ export default class Timer extends React.Component {
 }
 
 Timer.propTypes = {
-  timer: PropTypes.object
+  timer: PropTypes.object,
+  onTimerStartActionClicked: PropTypes.func,
+  onTimerStopActionClicked: PropTypes.func
 };

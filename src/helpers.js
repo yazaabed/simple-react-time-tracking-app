@@ -6,8 +6,6 @@ class Utils {
 
     return [hours.toString(), minutes.toString(), seconds.toString()].join(":");
   }
-
-  private;
 }
 
 export default Utils;
